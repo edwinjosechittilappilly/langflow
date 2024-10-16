@@ -24,6 +24,7 @@ from .input_mixin import (
     MultilineMixin,
     RangeMixin,
     SerializableFieldTypes,
+    SliderMixin,
     TableMixin,
 )
 
@@ -495,6 +496,10 @@ class LinkInput(BaseInputMixin, LinkMixin):
     field_type: SerializableFieldTypes = FieldTypes.LINK
 
 
+class SliderInput(BaseInputMixin, RangeMixin, SliderMixin):
+    field_type: SerializableFieldTypes = FieldTypes.SLIDER
+
+
 DEFAULT_PROMPT_INTUT_TYPES = ["Message", "Text"]
 
 
@@ -531,6 +536,7 @@ InputTypes = (
     | MessageInput
     | TableInput
     | LinkInput
+    | SliderInput
 )
 
 InputTypesMap: dict[str, type[InputTypes]] = {t.__name__: t for t in get_args(InputTypes)}
